@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Call of Duty: Modern Warfare II - Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="scanlines"></div>
+    
+    <div class="app-container">
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="logo">CALL<span class="text-gold">OF</span>DUTY</div>
+        <div class="nav-links">
+          <a href="#" class="nav-link active">Home</a>
+          <a href="#" class="nav-link">Games</a>
+          <a href="#" class="nav-link">News</a>
+          <a href="#" class="nav-link">Esports</a>
+          <a href="#" class="nav-link">Support</a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-secondary" style="border:none;">🔍 Search</button>
+            <button class="btn-primary" style="font-size: 1rem; padding: 0.3rem 1.5rem;">Log In</button>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section class="hero">
+        <img src="/assets/ghost.png" alt="Ghost Character" class="hero-ghost-img" />
+        
+        <div class="hero-content">
+          <h1 class="hero-title font-header">LET'S GET <br><span class="text-gold">THIS DONE</span></h1>
+          <p class="hero-subtitle">
+            Experience intense and action-packed first-person gameplay in the latest Call of Duty installment. Gear up and see the light now!
+          </p>
+          <button class="btn-primary">PLAY NOW</button>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        
+        <!-- Game Modes Section -->
+        <section>
+          <div class="section-header">
+            <h2 class="section-title font-header">Call of Duty: <span style="font-weight: 300;">Modern Warfare II</span></h2>
+            <a href="#" class="text-gold" style="text-decoration: none; font-size: 1rem; font-weight: bold;">VIEW ALL UPDATES</a>
+          </div>
+
+          <div class="mode-cards">
+            <!-- Campaign Card -->
+            <div class="card">
+              <div class="card-img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=2070');"></div>
+              <div class="card-content-box">
+                  <h3 class="card-title font-header">CAMPAIGN MODE</h3>
+                  <p class="card-desc">Engage in thrilling story missions in single-player battles across the globe.</p>
+                  <button class="btn-primary" style="font-size: 1rem; width: 100%;">CONTINUE</button>
+              </div>
+            </div>
+
+            <!-- Multiplayer Card -->
+            <div class="card">
+                <div class="card-img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=2070');"></div>
+                <div class="card-content-box">
+                    <h3 class="card-title font-header">MULTIPLAYER</h3>
+                    <p class="card-desc">Team up in intense competitive modes. Dominate the battlefield online.</p>
+                    <button class="btn-primary" style="font-size: 1rem; width: 100%;">JOIN NOW</button>
+                </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Latest Updates Section -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title font-header">Latest Updates</h2>
+                <div class="controls"></div>
+            </div>
+
+            <div class="updates-grid">
+                <div class="update-card" style="background-image: url('https://images.unsplash.com/photo-1523825036634-aab3cce05919?auto=format&fit=crop&q=80&w=2070');">
+                    <div class="update-content">
+                        <span class="update-tag">SEASON 5</span>
+                        <h3 class="font-header" style="font-size: 1.8rem;">NEW MAPS AND ELITES</h3>
+                        <p style="font-size: 1rem; margin-top: 0.5rem; color: #ddd;">Three new multiplayer maps available now.</p>
+                    </div>
+                </div>
+                <div class="update-card" style="background-image: url('https://images.unsplash.com/photo-1533236897111-3e94666b2edf?auto=format&fit=crop&q=80&w=1000');">
+                    <div class="update-content">
+                        <span class="update-tag">EVENT</span>
+                        <h3 class="font-header" style="font-size: 1.8rem;">DOUBLE XP WEEKEND</h3>
+                        <p style="font-size: 1rem; margin-top: 0.5rem; color: #ddd;">Earn weapon xp fast this weekend only.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Section -->
+         <section>
+            <div class="section-header">
+                <h2 class="section-title font-header">Latest Media</h2>
+            </div>
+            <div class="media-grid">
+                <div class="media-item" style="background-image: url('/assets/media1.png');"></div>
+                <div class="media-item" style="background-image: url('/assets/media2.png');"></div>
+                <div class="media-item" style="background-image: url('/assets/media3.png');"></div>
+            </div>
+         </section>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        
+        <!-- Game Modes Widget -->
+        <div class="widget">
+            <div class="widget-header">
+                <h3 class="widget-title">GAME MODES</h3>
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item"><span>Campaign</span> <span>15%</span></li>
+                <li class="menu-item"><span class="text-gold">The 10 Mercs</span> <span>0/500</span></li>
+                <li class="menu-item"><span>Gun Game</span> <span>Top 10%</span></li>
+                <li class="menu-item"><span>Battle Royale</span> <span>Lvl 50</span></li>
+            </ul>
+            <button class="btn-primary" style="width: 100%; margin-top: 1rem; font-size: 1rem;">CLAIM REWARD</button>
+        </div>
+
+        <!-- Account Widget -->
+        <div class="widget">
+            <div class="widget-header">
+                <span style="font-size: 0.9rem; color: var(--cod-text-muted);">ACCOUNT -></span>
+            </div>
+            <div class="profile-widget">
+                <img src="/assets/rank.png" class="profile-img" alt="Rank">
+                <div class="profile-info">
+                    <h3 class="font-header">WARRIOR87</h3>
+                    <p>Rank 154: General</p>
+                </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+               <button class="btn-secondary" style="flex: 1; font-size: 0.8rem;">EDIT</button> 
+               <button class="btn-secondary" style="flex: 1; font-size: 0.8rem; border-color: var(--cod-gold); color: var(--cod-gold);">BOOST</button> 
+            </div>
+        </div>
+
+
+        <!-- Store Widget -->
+        <div class="widget">
+            <div class="widget-header">
+                <h3 class="widget-title">Store</h3>
+                <div style="display: flex; gap: 5px;">
+                    <span style="width: 10px; height: 10px; background: #fff;"></span>
+                    <span style="width: 10px; height: 10px; background: #444;"></span>
+                    <span style="width: 10px; height: 10px; background: var(--cod-gold);"></span>
+                </div>
+            </div>
+            <div class="store-item">
+                <img src="/assets/store-bundle.png" alt="Bundle" style="width: 100%; border: 1px solid var(--cod-border); margin-bottom: 0.5rem;">
+                <h4 style="color: var(--cod-text-main);">Dragon Fire Bundle</h4>
+                <p style="color: var(--cod-gold); font-size: 0.9rem;">2400 CP</p>
+            </div>
+        </div>
+
+        <!-- Friends Widget -->
+         <div class="widget">
+            <div class="widget-header">
+                <h3 class="widget-title">FRIENDS ONLINE</h3>
+                <span class="text-gold">5</span>
+            </div>
+            <div class="friend-list">
+                <div class="friend-item">
+                    <div class="status-dot online"></div>
+                    <span>Rogue Burger</span>
+                </div>
+                <div class="friend-item">
+                    <div class="status-dot online"></div>
+                    <span>Tactical 101</span>
+                </div>
+                <div class="friend-item">
+                    <div class="status-dot"></div>
+                    <span style="color: #666;">GhostRecon (Offline)</span>
+                </div>
+            </div>
+         </div>
+
+      </aside>
+    </div>
+
+    <!-- Bottom News Section (Full Width optionally, but sticking to grid for now, or move out of grid for full width) -->
+    <div style="max-width: 1600px; margin: 0 auto; padding: 0 2rem 4rem;">
+        <h2 class="section-title font-header" style="margin-bottom: 1rem; border-bottom: 1px solid var(--cod-border); padding-bottom: 0.5rem;">News & Announcements</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1542300058-b94b8ab7411b?auto=format&fit=crop&q=80&w=1000');"></div>
+                <div class="news-text">
+                    <h4>Upcoming: Double XP Weekend</h4>
+                    <span class="text-gold">READ MORE</span>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1599939571322-792a326991f2?auto=format&fit=crop&q=80&w=1000');"></div>
+                <div class="news-text">
+                    <h4>New Warzone Updates</h4>
+                    <span class="text-gold">PATCH NOTES</span>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1616428616182-e80674d89617?auto=format&fit=crop&q=80&w=1000');"></div>
+                <div class="news-text">
+                    <h4>Free Operator Skins</h4>
+                    <span class="text-gold">CLAIM NOW</span>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1509900010531-97b777a83d72?auto=format&fit=crop&q=80&w=1000');"></div>
+                <div class="news-text">
+                    <h4>Patch Notes for Update 1.14</h4>
+                    <span class="text-gold">VIEW</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
