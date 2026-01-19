@@ -232,9 +232,10 @@ body::before {
 
 .hero-content-wrapper {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
+  /* Full height */
   max-width: 1600px;
   padding: 0 4rem;
   z-index: 2;
@@ -242,6 +243,8 @@ body::before {
 
 .hero-text-box {
   max-width: 700px;
+  align-self: center;
+  /* Center the text verticaly */
 }
 
 .hero-eyebrow {
@@ -281,19 +284,24 @@ body::before {
 
 .hero-visual {
   position: relative;
-  height: 800px;
-  width: 600px;
+  height: 100%;
+  width: 50%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  /* Align to the floor */
   justify-content: center;
+  padding-bottom: 0;
 }
 
 .hero-ghost-img {
-  height: 120%;
+  height: 95%;
+  /* Tall presence */
+  width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 50px rgba(0, 0, 0, 0.8));
-  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  filter: drop-shadow(0 0 60px rgba(0, 0, 0, 0.6));
+  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+  transform-origin: bottom center;
 }
 
 /* Sections General */
