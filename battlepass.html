@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Call of Duty: Battle Pass - Season 05</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Specific overrides for Battle Pass page */
+        .bp-header {
+            padding-top: 120px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(252, 163, 17, 0.15), transparent 60%);
+        }
+        .bp-map-container {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .sector-node {
+            aspect-ratio: 1;
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid var(--cod-border);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            cursor: pointer;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        .sector-node:hover {
+            border-color: var(--cod-gold);
+            transform: scale(1.05);
+            background: rgba(30, 30, 30, 0.9);
+        }
+        .sector-node.unlocked {
+            border-color: var(--cod-gold);
+            box-shadow: 0 0 15px rgba(252, 163, 17, 0.2);
+        }
+        .sector-node.locked {
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+        .sector-id {
+            font-size: 2.5rem;
+            font-family: var(--cod-font-header);
+            color: white;
+            z-index: 2;
+        }
+        .sector-status {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--cod-gold);
+            margin-top: 0.5rem;
+        }
+        
+        .reward-preview {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 2rem;
+            background: rgba(10,10,10,0.8);
+            border: 1px solid var(--cod-border);
+            align-items: center;
+        }
+        .reward-img-lg {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+        }
+    </style>
+  </head>
+  <body>
+    <div class="scanlines"></div>
+    
+    <div class="app-container">
+      <!-- Navbar (Reused) -->
+      <nav class="navbar">
+        <div class="logo">CALL<span class="text-gold">OF</span>DUTY</div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="#" class="nav-link active">Battle Pass</a>
+          <a href="#" class="nav-link">Warzone</a>
+          <a href="#" class="nav-link">Esports</a>
+          <a href="#" class="nav-link">Store</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Simulated User Logged In State for this page -->
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span class="text-gold" style="font-family: var(--cod-font-header); font-size: 1.2rem;">CP 2400</span>
+                <img src="/assets/rank.png" style="width: 40px; height: 40px; border: 1px solid var(--cod-gold);">
+            </div>
+        </div>
+      </nav>
+
+      <section class="bp-header reveal-on-load">
+        <h5 class="hero-eyebrow text-gold">SECTOR MAP</h5>
+        <h1 class="hero-title font-header" style="font-size: 5rem;">BATTLE <span class="text-outline">PASS</span></h1>
+        <p style="color: #ccc; max-width: 600px; margin: 0 auto;">Plan your path to victory. Unlock sectors to earn new operators, weapons, and COD points.</p>
+        
+        <div style="margin-top: 2rem;">
+            <div style="display: inline-block; background: #222; padding: 0.5rem 2rem; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);">
+                <span style="color: #aaa;">PROGRESS: </span> <span class="text-gold" style="font-weight: bold; font-size: 1.2rem;">45%</span>
+            </div>
+        </div>
+      </section>
+
+      <!-- Featured Reward -->
+      <section class="reward-preview reveal-on-scroll">
+        <img src="/assets/ghost.png" class="reward-img-lg" alt="Operator">
+        <div class="reward-info">
+            <span class="update-tag">INSTANT REWARD</span>
+            <h2 class="font-header" style="font-size: 3rem; line-height: 1;">GRAVES <br><span class="text-gold">OPERATOR SKIN</span></h2>
+            <p style="color: #bbb; margin: 1rem 0 2rem;">Purchase the Battle Pass to instantly unlock Graves, the Shadow Company CEO.</p>
+            <button class="btn-primary">CLAIM SECTOR</button>
+        </div>
+      </section>
+
+      <!-- Map Grid -->
+      <section class="bp-map-container">
+         <!-- Generating Sectors -->
+         <div class="sector-node unlocked"><span class="sector-id">A1</span><span class="sector-status">COMPLETED</span></div>
+         <div class="sector-node unlocked"><span class="sector-id">A2</span><span class="sector-status">COMPLETED</span></div>
+         <div class="sector-node unlocked"><span class="sector-id">A3</span><span class="sector-status">COMPLETED</span></div>
+         <div class="sector-node"><span class="sector-id">A4</span><span class="sector-status">IN PROGRESS</span></div>
+         <div class="sector-node locked"><span class="sector-id">A5</span><span class="sector-status">LOCKED</span></div>
+         <div class="sector-node locked"><span class="sector-id">A6</span><span class="sector-status">LOCKED</span></div>
+         <div class="sector-node locked"><span class="sector-id">A7</span><span class="sector-status">LOCKED</span></div>
+         <div class="sector-node locked"><span class="sector-id">A8</span><span class="sector-status">LOCKED</span></div>
+         <div class="sector-node locked"><span class="sector-id">A9</span><span class="sector-status">LOCKED</span></div>
+         <div class="sector-node locked"><span class="sector-id">A10</span><span class="sector-status">LOCKED</span></div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copy">
+                &copy; 2024 Activision Publishing, Inc.
+            </div>
+        </div>
+      </footer>
+
+    </div>
+    
+    <script type="module" src="/main.js"></script>
+    <script>
+        // Simple Interaction for Grid
+        document.querySelectorAll('.sector-node').forEach(node => {
+            node.addEventListener('click', () => {
+                if(node.classList.contains('locked')) {
+                    alert('Complete previous sectors to unlock this region.');
+                } else if (!node.classList.contains('unlocked')) {
+                    // Simulate unlocking
+                    node.style.borderColor = 'white';
+                    setTimeout(() => {
+                        let confirmUnlock = confirm("Spend 1 Token to unlock this sector?");
+                        if(confirmUnlock) {
+                            node.classList.add('unlocked');
+                            node.querySelector('.sector-status').innerText = "COMPLETED";
+                        }
+                    }, 100);
+                }
+            });
+        });
+    </script>
+  </body>
+</html>
