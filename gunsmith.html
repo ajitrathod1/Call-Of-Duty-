@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call of Duty: Gunsmith</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gunsmith-container {
+            padding-top: 100px;
+            height: 100vh;
+            background: radial-gradient(circle at center, #1a1a1a, #000);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .gunsmith-stage {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .weapon-model {
+            width: 80%;
+            max-width: 1000px;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.8));
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Interactive Nodes */
+        .attachment-node {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        .attachment-node::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+        .attachment-node:hover {
+            border-color: var(--cod-gold);
+            transform: scale(1.2);
+        }
+        .attachment-node.active {
+            border-color: var(--cod-gold);
+            box-shadow: 0 0 20px rgba(252, 163, 17, 0.4);
+            background: rgba(252, 163, 17, 0.2);
+        }
+        .attachment-node.active::after {
+            background: var(--cod-gold);
+        }
+
+        /* Panel */
+        .customization-panel {
+            position: absolute;
+            right: 0;
+            top: 100px;
+            bottom: 0;
+            width: 400px;
+            background: rgba(10,10,10,0.95);
+            border-left: 1px solid var(--cod-border);
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .customization-panel.open {
+            transform: translateX(0);
+        }
+        .panel-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--cod-border);
+        }
+        .panel-list {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        .attachment-item {
+            padding: 1rem;
+            border: 1px solid var(--cod-border);
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .attachment-item:hover {
+            border-color: var(--cod-gold);
+            background: rgba(255,255,255,0.05);
+        }
+        .attachment-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: #222;
+        }
+
+        /* Stats */
+        .weapon-stats {
+            position: absolute;
+            bottom: 4rem;
+            left: 4rem;
+            width: 300px;
+            background: rgba(0,0,0,0.8);
+            padding: 1.5rem;
+            border-left: 4px solid var(--cod-gold);
+        }
+        .stat-row {
+            margin-bottom: 0.8rem;
+        }
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 0.3rem;
+        }
+        .stat-bar {
+            height: 4px;
+            background: #333;
+            width: 100%;
+            position: relative;
+        }
+        .stat-fill {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .stat-fill.boosted {
+            background: var(--cod-gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    
+    <div class="app-container">
+        <!-- Injected Navbar -->
+        <div id="navbar-root"></div>
+
+        <div class="gunsmith-container">
+            <h5 class="hero-eyebrow text-gold" style="position: absolute; top: 120px; left: 4rem;">WEAPON LAB</h5>
+            <h1 class="hero-title font-header" style="position: absolute; top: 140px; left: 4rem; font-size: 4rem;">M4 <span class="text-outline">PLATFORM</span></h1>
+
+            <div class="gunsmith-stage">
+                <!-- Using a placeholder weapon image, assuming assets exist or using generic -->
+                <!-- Ideally use 'weapon-side.png' if available, otherwise generate later -->
+                <img src="/assets/weapon-m4.png" id="weapon-display" class="weapon-model" alt="M4 Rifle">
+                
+                <!-- Interactive Nodes overlaying the gun -->
+                <!-- Positioning is percentage based to be responsive relative to container -->
+                <div class="attachment-node" style="top: 45%; left: 70%;" data-slot="muzzle"></div>
+                <div class="attachment-node" style="top: 35%; left: 55%;" data-slot="optic"></div>
+                <div class="attachment-node" style="top: 60%; left: 60%;" data-slot="underbarrel"></div>
+                <div class="attachment-node" style="top: 50%; left: 30%;" data-slot="stock"></div>
+                <div class="attachment-node" style="top: 55%; left: 50%;" data-slot="magazine"></div>
+            </div>
+
+            <div class="weapon-stats">
+                <div class="stat-row">
+                    <div class="stat-label"><span>DAMAGE</span> <span id="val-damage">35</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 35%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label"><span>FIRE RATE</span> <span id="val-rov">80</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label"><span>RANGE</span> <span id="val-range">45</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 45%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-label"><span>ACCURACY</span> <span id="val-acc">60</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 60%;"></div></div>
+                </div>
+            </div>
+
+            <aside class="customization-panel" id="custom-panel">
+                <div class="panel-header">
+                    <h3 class="font-header" id="panel-title">OPTIC</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Select attachment</p>
+                </div>
+                <div class="panel-list" id="panel-content">
+                    <!-- Injected by JS -->
+                </div>
+                <div style="padding: 2rem;">
+                    <button class="btn-secondary" style="width: 100%;" id="close-panel">CLOSE</button>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Injected Footer -->
+        <div id="footer-root"></div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+    <script>
+        // Gunsmith Logic
+        // Simple mock data
+        const attachments = {
+            optic: [
+                { name: 'Cronen Mini Pro', boost: 5, type: 'acc' },
+                { name: 'VLK 4.0 Optic', boost: 15, type: 'range' },
+                { name: 'SZ Heatsource', boost: 10, type: 'acc' }
+            ],
+            muzzle: [
+                { name: 'Echoless-80', boost: 10, type: 'range' },
+                { name: 'RF Crown 50', boost: 5, type: 'damage' }
+            ],
+            // ... others
+        };
+
+        const nodes = document.querySelectorAll('.attachment-node');
+        const panel = document.getElementById('custom-panel');
+        const panelTitle = document.getElementById('panel-title');
+        const panelContent = document.getElementById('panel-content');
+        
+        nodes.forEach(node => {
+            node.addEventListener('click', () => {
+                // Activate UI
+                nodes.forEach(n => n.classList.remove('active'));
+                node.classList.add('active');
+                
+                const slot = node.dataset.slot;
+                panelTitle.innerText = slot.toUpperCase();
+                
+                // Populate List
+                panelContent.innerHTML = '';
+                const items = attachments[slot] || [
+                    { name: 'Base Attachment', boost: 0, type: 'none' },
+                    { name: 'Pro Tuned '+slot, boost: 10, type: 'acc' }
+                ];
+
+                items.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = 'attachment-item';
+                    el.innerHTML = `
+                        <div style="width: 50px; height: 50px; background: #333;"></div>
+                        <div>
+                            <div style="color: white; font-weight: bold;">${item.name}</div>
+                            <div style="color: var(--cod-gold); font-size: 0.8rem;">+${item.boost} ${item.type}</div>
+                        </div>
+                    `;
+                    el.onclick = () => {
+                        // Equip logic (visual feedback)
+                        document.querySelectorAll('.stat-fill').forEach(bar => {
+                            bar.classList.add('boosted');
+                            setTimeout(() => bar.classList.remove('boosted'), 300);
+                        });
+                        // Close
+                        panel.classList.remove('open');
+                        node.classList.remove('active');
+                        node.style.background = 'var(--cod-gold)';
+                    };
+                    panelContent.appendChild(el);
+                });
+
+                panel.classList.add('open');
+            });
+        });
+
+        document.getElementById('close-panel').addEventListener('click', () => {
+            panel.classList.remove('open');
+            nodes.forEach(n => n.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>

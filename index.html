@@ -10,21 +10,8 @@
     <div class="scanlines"></div>
     
     <div class="app-container">
-      <!-- Navbar -->
-      <nav class="navbar">
-        <div class="logo">CALL<span class="text-gold">OF</span>DUTY</div>
-        <div class="nav-links">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="battlepass.html" class="nav-link">Battle Pass</a>
-          <a href="#" class="nav-link">Warzone</a>
-          <a href="#" class="nav-link">Esports</a>
-          <a href="#" class="nav-link">Store</a>
-        </div>
-        <div class="nav-actions">
-            <button class="btn-secondary" style="border:none;">LOGIN</button>
-            <button class="btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1.5rem;">SIGN UP</button>
-        </div>
-      </nav>
+      <!-- Navbar injected by main.js -->
+      <div id="navbar-root" style="position: absolute; top:0; width:100%; z-index: 100;"></div>
 
       <!-- Hero Section (Full Viewport) -->
       <header class="hero-section">
@@ -120,25 +107,10 @@
         </div>
       </section>
 
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Legal</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Use</a>
-                <a href="#">Cookie Policy</a>
-                <a href="#">Support</a>
-                <a href="#">Cookie Settings</a>
-            </div>
-            <div class="footer-copy">
-                &copy; 2024 Activision Publishing, Inc. CALL OF DUTY is a trademark of Activision Publishing, Inc.
-            </div>
-        </div>
-      </footer>
+      <!-- Footer injected by main.js -->
+      <div id="footer-root"></div>
 
     </div>
-
     
     <script type="module" src="/main.js"></script>
   </body>

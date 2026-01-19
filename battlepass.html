@@ -81,24 +81,8 @@
     <div class="scanlines"></div>
     
     <div class="app-container">
-      <!-- Navbar (Reused) -->
-      <nav class="navbar">
-        <div class="logo">CALL<span class="text-gold">OF</span>DUTY</div>
-        <div class="nav-links">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="#" class="nav-link active">Battle Pass</a>
-          <a href="#" class="nav-link">Warzone</a>
-          <a href="#" class="nav-link">Esports</a>
-          <a href="#" class="nav-link">Store</a>
-        </div>
-        <div class="nav-actions">
-            <!-- Simulated User Logged In State for this page -->
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <span class="text-gold" style="font-family: var(--cod-font-header); font-size: 1.2rem;">CP 2400</span>
-                <img src="/assets/rank.png" style="width: 40px; height: 40px; border: 1px solid var(--cod-gold);">
-            </div>
-        </div>
-      </nav>
+      <!-- Navbar injected -->
+      <div id="navbar-root" style="position: absolute; top:0; width:100%; z-index: 100;"></div>
 
       <section class="bp-header reveal-on-load">
         <h5 class="hero-eyebrow text-gold">SECTOR MAP</h5>
@@ -138,13 +122,8 @@
          <div class="sector-node locked"><span class="sector-id">A10</span><span class="sector-status">LOCKED</span></div>
       </section>
 
-      <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-copy">
-                &copy; 2024 Activision Publishing, Inc.
-            </div>
-        </div>
-      </footer>
+      <!-- Footer injected -->
+      <div id="footer-root"></div>
 
     </div>
     

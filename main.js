@@ -1,6 +1,17 @@
 import './style.css'
+import { Navbar } from './components/Navbar.js';
+import { Footer } from './components/Footer.js';
 
 console.log('Call of Duty Landing Page Inited');
+
+// Component Injection
+document.addEventListener('DOMContentLoaded', () => {
+  const navRoot = document.getElementById('navbar-root');
+  const footerRoot = document.getElementById('footer-root');
+
+  if (navRoot) navRoot.innerHTML = Navbar();
+  if (footerRoot) footerRoot.innerHTML = Footer();
+});
 
 // Scroll Animations
 const observerOptions = {
@@ -17,7 +28,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+document.querySelectorAll('.reveal-on-scroll, .reveal-on-load').forEach(el => {
   observer.observe(el);
 });
 
