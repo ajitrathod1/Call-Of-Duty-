@@ -1,30 +1,34 @@
 import './style.css'
 
-console.log('Call of Duty UI Loaded');
+console.log('Call of Duty Landing Page Inited');
 
-// Add some interaction to buttons
-const buttons = document.querySelectorAll('button');
+// Scroll Animations
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: "0px 0px -50px 0px"
+};
 
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Sound effect could go here
-    console.log('Clicked', btn.innerText);
-    
-    // Add a quick flash effect
-    btn.style.filter = 'brightness(1.5)';
-    setTimeout(() => {
-      btn.style.filter = 'none';
-    }, 100);
-  });
-});
-
-// Dynamic Particles adjustment (optional, if CSS isn't enough)
-document.addEventListener('mousemove', (e) => {
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-    
-    const ghost = document.querySelector('.hero-ghost-img');
-    if(ghost) {
-        ghost.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target); // Trigger once
     }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+  observer.observe(el);
 });
+
+// Parallax Effect for Hero
+document.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+  const ghost = document.querySelector('.parallax-target');
+  if (ghost) {
+    ghost.style.transform = `translate(${x}px, ${y}px)`;
+  }
+});
+
